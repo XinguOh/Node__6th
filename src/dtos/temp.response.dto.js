@@ -6,6 +6,12 @@ export const flagResponseDTO = (flag) => {
     return {"flag" : flag};
 }
 
-export const missionResponseDTO = (data) => {
-    return {"mission" : data};
+//미션 완료
+export const missionFinsiehdDTO = (data) => {
+    return {"Finished mission" : data};
+}
+
+//미션 중
+export const missionPendingDTO = (data) => {
+    return {"Pending mission" : data};
 }

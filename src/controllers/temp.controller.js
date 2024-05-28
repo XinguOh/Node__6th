@@ -1,5 +1,6 @@
 import { status } from '../config/response.status.js';
 import { getTempData } from '../services/temp.service.js';
+import { CheckMissionData } from '../services/temp.service.js';
 import { response } from '../config/response.js';
 import { CheckFlag } from '../services/temp.service.js';
 
@@ -13,5 +14,6 @@ export const tempException = (req, res, next) => {
 }
 
 export const mission = (req, res, next) => {
-    res.send(response(status.SUCCESS, getTempData()));
+    console.log("/temp/mission/"+ req.params.missionStatus);
+    res.send(response(status.SUCCESS, CheckMissionData(req.params.missionStatus)));
 };
