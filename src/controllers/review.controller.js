@@ -1,13 +1,15 @@
-import { addReviewService } from '../services/review.service.js';
-import { response } from '../config/response.js';
-import { status } from '../config/response.status.js';
+import ReviewService from '../services/review.service.js';
 
-export const addReview = async (req, res, next) => {
+const addReview = async (req, res) => {
+    const { storeId } = req.params;
+    const reviewData = req.body;
+
     try {
-        const reviewData = req.body;
-        const result = await addReviewService(reviewData);
-        res.status(200).send(response(status.SUCCESS, result));
-    } catch (err) {
-        next(err);
+        const review = await ReviewService.addReview(storeId, reviewData);
+        return res.status(201).json(review);
+    } catch (error) {
+        return res.status(400).json({ error: error.message });
     }
 };
+
+export { addReview as addReviewController };

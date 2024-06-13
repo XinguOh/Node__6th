@@ -1,12 +1,16 @@
-import { addReviewToDatabase } from '../models/review.model.js';
-import { BaseError } from '../config/error.js';
-import { status } from '../config/response.status.js';
+import { Review, reviews } from '../models/review.model.js';
+import { stores } from '../models/store.model.js';
 
-export const addReviewService = async (reviewData) => {
-    try {
-        const result = await addReviewToDatabase(reviewData);
-        return result;
-    } catch (err) {
-        throw new BaseError(status.INTERNAL_SERVER_ERROR);
+const addReview = (storeId, reviewData) => {
+    const store = stores.find(store => store.id === storeId);
+    if (!store) {
+        throw new Error('Store not found');
     }
+
+    const review = new Review({ ...reviewData, storeId });
+    reviews.push(review);
+    return review;
 };
+
+
+export default { addReview };

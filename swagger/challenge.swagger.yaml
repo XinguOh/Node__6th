@@ -1,16 +1,16 @@
 paths:
-  /stores/{storeId}/reviews:
+  /missions/{missionId}/challenges:
     post:
       tags:
-        - Review
-      summary: 가게에 리뷰 추가
+        - Challenge
+      summary: 미션 도전
       parameters:
         - in: path
-          name: storeId
+          name: missionId
           required: true
           schema:
             type: string
-          description: 가게 ID
+          description: 미션 ID
       requestBody:
         required: true
         content:
@@ -18,17 +18,13 @@ paths:
             schema:
               type: object
               properties:
-                rating:
-                  type: integer
-                  description: 리뷰 평점
-                  example: 5
-                comment:
+                userId:
                   type: string
-                  description: 리뷰 내용
-                  example: Great place!
+                  description: 유저 ID
+                  example: user123
       responses:
         '201':
-          description: 리뷰 추가 성공
+          description: 미션 도전 성공
           schema:
             type: object
             properties:
@@ -47,15 +43,12 @@ paths:
               data:
                 type: object
                 properties:
-                  id:
+                  missionId:
                     type: string
-                    example: review123
-                  rating:
-                    type: integer
-                    example: 5
-                  comment:
+                    example: mission123
+                  userId:
                     type: string
-                    example: Great place!
+                    example: user123
         '400':
           description: 잘못된 요청
           schema:
