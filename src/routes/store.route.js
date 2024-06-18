@@ -1,8 +1,9 @@
 import express from 'express';
-import { addStoreController } from '../controllers/store.controller.js';
+import asyncHandler from 'express-async-handler';
+import { getStoreMissions } from '../controllers/store.controller.js';
 
-const router = express.Router();
+const storeRouter = express.Router({ mergeParams: true });
 
-router.post('/regions/:regionId/stores', addStoreController);
+storeRouter.get('/:storeId/missions', asyncHandler(getStoreMissions));
 
-export default router;
+export default storeRouter;

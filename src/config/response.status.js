@@ -16,3 +16,11 @@ export const status = {
     ARTICLE_NOT_FOUND: {status: StatusCodes.NOT_FOUND, "isSuccess": false, "code": "ARTICLE4001", "message": "게시글이 없습니다."}
 
 }
+export const response = ({isSuccess, code, message}, result) => {
+    return {
+        isSuccess: isSuccess,
+        code: code,
+        message: message,
+        result: result
+    }
+};
